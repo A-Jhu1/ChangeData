@@ -1,6 +1,14 @@
 #include <windows.h>
 #include <comdef.h>
+#if __has_include(<filesystem>)
 #include <filesystem>
+namespace fs = std::filesystem;
+#elif __has_include(<experimental/filesystem>)
+#include <experimental/filesystem>
+namespace fs = std::experimental::filesystem;
+#else
+#error "C++ filesystem support is required. Please enable C++17 or upgrade the compiler."
+#endif
 #include <iostream>
 
 // NOTE: Update the MSWORD.OLB path to match your installed Office version.
@@ -10,8 +18,6 @@
 #import "C:\\Program Files\\Microsoft Office\\root\\Office16\\MSWORD.OLB" \
     rename("ExitWindows", "WordExitWindows") \
     rename_namespace("Word")
-
-namespace fs = std::filesystem;
 
 struct ReplaceStats {
     size_t files_scanned = 0;

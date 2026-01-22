@@ -5,7 +5,7 @@ It is intended for Windows and can be built with Dev-C++.
 
 ## Requirements
 - Windows with Microsoft Word installed.
-- Dev-C++ configured to compile C++17.
+- Dev-C++ configured to compile C++17 (GCC 8+ recommended). Older Dev-C++ versions may require `<experimental/filesystem>`.
 - Update the `#import` path in `src/main.cpp` to match your Office installation (MSWORD.OLB).
 
 Common MSWORD.OLB paths:
@@ -16,6 +16,7 @@ Common MSWORD.OLB paths:
 1. Open `src/main.cpp` in Dev-C++.
 2. Set the compiler standard to C++17.
 3. Build the project to produce `WordBatchReplace.exe`.
+   - If you see `fatal error: filesystem: No such file or directory`, upgrade Dev-C++/GCC or switch to a build that supports C++17 `<filesystem>`.
 
 ## Usage
 ```
